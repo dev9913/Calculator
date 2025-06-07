@@ -1,0 +1,21 @@
+version: 0.2
+
+env:
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME:/demo/docker-credential/username
+    DOCKER_REGISTRY_PASSWORD:/demo/docker-credential/password
+    DOCKER_REGISTRY_URL:/demo/docker-registry/url
+    
+build:
+  commands:
+    - echo "Running Test..."
+    - cd index.html
+    - echo "Building Docker Image"
+    - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"      
+    - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/index.html:latest"
+    - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/index.html:latest"
+
+artifacts:
+  base-directory: output
+  files:
+    - '**/*'
