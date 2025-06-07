@@ -1,7 +1,8 @@
 FROM alpine:3.18
 
-WORKDIR /index.html
+WORKDIR /app
 
-COPY index.html /.
+COPY index.html .
 
-CMD ["sh","-c","ls -l",  /index.html && echo "Complete !!"]
+CMD ["sh", "-c", "ls -l index.html && echo 'Complete !!'"]
+
