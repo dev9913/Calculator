@@ -1,11 +1,7 @@
 version: "3.9"
-
 services:
   web:
     build: .
-    container_name: alpine-web
     ports:
       - "5000:5000"
-    volumes:
-      - ./index.html:/app/index.html   # so you can edit without rebuilding
     restart: always
