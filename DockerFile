@@ -1,0 +1,10 @@
+FROM   alpine:2.3
+
+WORKDIR /app
+
+COPY ..
+RUN npm build
+
+EXPOSE 5000
+
+CMD ["npm", "start"]
